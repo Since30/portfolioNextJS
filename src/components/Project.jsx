@@ -11,7 +11,7 @@ const Project = () => {
 <div id='project' className="max-w-[1240] mx-auto px-2 py-16">
     <p className="text-xl tracking-widest uppercase text-[#5651e5]">Projets</p>
     <h2 className="py-4">Ce que j'ai conçu</h2>
-    <div className="grid md:grid-col-2 gap-8">
+    <div className="grid md:grid-cols-2 gap-8">
         <ProjectItem
          title="DiceGame"
          backgroundImg={Image2} 

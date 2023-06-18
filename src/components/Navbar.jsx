@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
@@ -8,13 +8,25 @@ import Logo from '../../public/asset/Logo1.png'
 
 const Navbar = () => {
   const[nav,setNav] = useState(false)
+  const[shadow,setShadow] = useState(false)
 
   const handleNav = () => {
     setNav(!nav)
   }  
 
+  useEffect(() => {
+    const handleShadow = () => {
+      if(window.scrollY > 90){
+        setShadow(true)
+      }else{
+        setShadow(false)
+      }
+  };
+    window.addEventListener('scroll',handleShadow)
+  }, [])
+
   return (
-    <div className='fixed w-full h-20 shadow-xl z-[100] ease-in-out duration-300'>
+    <div className={shadow ? 'fixed w-full h-20 shadow-xl z-[100]' : 'fixed w-full h-20 shadow-xl z-[100]'}>
       <div className='flex justify-between items-center w-full h-full px-2 2xl:px-16'>
         <Link href='/'>
           
@@ -33,17 +45,17 @@ const Navbar = () => {
               <Link href='/'>Acceuil</Link>
             </li>
             <li className='ml-10 text-sm uppercase hover:border-b'>
-              <Link href='/'>A propos</Link>
+              <Link href='#about'>A propos</Link>
             </li>
             <li className='ml-10 text-sm uppercase hover:border-b'>
-              <Link href='/'>Compétences</Link>
+              <Link href='#skills'>Compétences</Link>
             </li>
             <li className='ml-10 text-sm uppercase hover:border-b'>
-              <Link href='/'>Projets</Link>
+              <Link href='#project'>Projets</Link>
             </li>
             
             <li className='ml-10 text-sm uppercase hover:border-b'>
-              <Link href='/'>Contact</Link>
+              <Link href='#contact'>Contact</Link>
             </li>
           </ul>
           
@@ -89,27 +101,27 @@ const Navbar = () => {
           <div className='py-4 flex flex-col'>
             <ul className='uppercase'>
               <Link href='/'>
-                <li className='py-4 text-sm'>
+                <li onClick={()=> setNav(false)} className='py-4 text-sm'>
                   Accceuil
                 </li>
               </Link>
-              <Link href='/'>
-                <li className='py-4 text-sm'>
+              <Link href='#about'>
+                <li onClick={()=> setNav(false)} className='py-4 text-sm'>
                   A propos
                 </li>
               </Link>
-              <Link href='/'>
-                <li  className='py-4 text-sm'>
+              <Link href='#skills'>
+                <li onClick={()=> setNav(false)} className='py-4 text-sm'>
                   Compétences
                 </li>
               </Link>
-              <Link href='/'>
-                <li  className='py-4 text-sm'>
+              <Link href='#project'>
+                <li onClick={()=> setNav(false)} className='py-4 text-sm'>
                   Projets
                 </li>
               </Link>
               
-              <Link href='/'>
+              <Link onClick={()=> setNav(false)} href='#contact'>
                 <li  className='py-4 text-sm'>
                   Contact
                 </li>
